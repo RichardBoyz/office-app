@@ -1,12 +1,32 @@
-import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import { Route, Routes, useLocation } from "react-router-dom";
+import ProtectRoute from "./components/ProtectRoute";
+import { AuthContextProvider } from "./context/AuthContext";
+import Account from "./pages/Account";
+import ChoresRoomList from "./pages/ChoresRoomList";
+import Signin from "./pages/Signin";
+import Signup from "./pages/Signup";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const location = useLocation();
+  console.log(location.pathname);
   return (
-    <>
-      <div></div>
-    </>
+    <div className="h-dvh flex flex-col">
+      <h1 className="text-center">OFFICE</h1>
+
+      <AuthContextProvider>
+        <AnimatePresence mode="wait">
+          <Routes key={location.pathname} location={location}>
+            <Route path="/" element={<Signin />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route element={<ProtectRoute />}>
+              <Route path="account" element={<Account />} />
+              <Route path="chores-room-list" element={<ChoresRoomList />} />
+            </Route>
+          </Routes>
+        </AnimatePresence>
+      </AuthContextProvider>
+    </div>
   );
 }
 
