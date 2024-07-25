@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import PageTransition from "../PageTransition";
+import UnfoldButton from "../components/UnfoldButton";
+import ChoresNavigator from "../components/chores/ChoresNavigator";
+import ChoresRoomCard from "../components/chores/ChoresRoomCard";
+import ChoresRoomListLayout from "../components/chores/ChoresRoomListLayout";
+
 const ChoresRoomList = () => {
   const [isCollapse, setIsCollapse] = useState(false);
-  const [navAttribute, setNavAttribute] = useState({});
   const handleClickCollapse = () => {
     setIsCollapse(!isCollapse);
   };
@@ -27,7 +31,7 @@ const ChoresRoomList = () => {
     expanded: {
       width: "var(--width-to)",
       height: "var(--height-to)",
-      padding: "p-4",
+      padding: "2rem",
       opacity: 1,
     },
   };
@@ -42,12 +46,22 @@ const ChoresRoomList = () => {
         <motion.div
           variants={variants}
           animate={isCollapse ? "expanded" : "collapsed"}
-          className="flex rounded-md border border-slate-500 p-4 [--height-from:0px] [--height-to:200px] md:[--height-from:100%] md:[--height-to:100%] md:[--width-from:0px] md:[--width-to:300px]"
+          className="flex rounded-md border border-slate-500 [--height-from:0px] [--height-to:200px] md:[--height-from:100%] md:[--height-to:100%] md:[--width-from:0px] md:[--width-to:500px]"
         >
-          123
+          <ChoresNavigator />
         </motion.div>
-        <div className="flex rounded-md p-4 flex-col border border-slate-500 flex-auto">
-          <button onClick={handleClickCollapse}>hahahah</button>
+        <div className="relative overflow-y-auto flex flex-auto rounded-md p-4 md:flex-row flex-col border border-slate-500">
+          <UnfoldButton
+            isUnfoled={isCollapse}
+            onClickSwitch={handleClickCollapse}
+          />
+          <ChoresRoomListLayout>
+            <ChoresRoomCard />
+            <ChoresRoomCard />
+            <ChoresRoomCard />
+            <ChoresRoomCard />
+            <ChoresRoomCard />
+          </ChoresRoomListLayout>
         </div>
       </motion.div>
     </PageTransition>

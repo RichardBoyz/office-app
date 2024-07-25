@@ -70,7 +70,7 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div className="inner flex-auto">
+    <div className="inner flex-auto overflow-hidden">
       <motion.div {...animate(slide)} className="slide"></motion.div>
       <motion.div {...animate(perspective)} className="h-full">
         <motion.div {...animate(opacity)} className="h-full">

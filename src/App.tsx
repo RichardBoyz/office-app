@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import ProtectRoute from "./components/ProtectRoute";
 import { AuthContextProvider } from "./context/AuthContext";
 import Account from "./pages/Account";
@@ -9,10 +9,18 @@ import Signup from "./pages/Signup";
 
 function App() {
   const location = useLocation();
-  console.log(location.pathname);
+
+  const navigate = useNavigate();
+
+  const handleClickHome = () => {
+    navigate("/account");
+  };
+
   return (
     <div className="h-dvh flex flex-col">
-      <h1 className="text-center">OFFICE</h1>
+      <h1 className="text-center cursor-pointer" onClick={handleClickHome}>
+        OFFICE
+      </h1>
 
       <AuthContextProvider>
         <AnimatePresence mode="wait">

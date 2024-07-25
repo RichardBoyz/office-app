@@ -5,6 +5,7 @@ import PageTransition from "../PageTransition";
 import ErrorMessageField from "../components/ErrorMessageField";
 import InputField from "../components/InputField";
 import Loading from "../components/Loading";
+import UsageChart from "../components/UsageChart";
 import { PASSWORD_LENGTH } from "../constants/authenticate";
 import { UserAuth } from "../context/AuthContext";
 const Signin = () => {
@@ -86,6 +87,8 @@ const Signin = () => {
           </button>
           <ErrorMessageField messages={errorMessages} />
         </form>
+
+        <UsageChart />
       </div>
     </PageTransition>
   );

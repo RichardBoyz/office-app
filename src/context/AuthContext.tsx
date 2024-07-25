@@ -13,13 +13,14 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { createUserToDb } from "../apis";
 import { auth } from "../firebase";
 
 type UserContextType = {
   user: User | null;
   isAuthLoading: Boolean;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
-  createUser: (userData: CreateUserType) => Promise<UserCredential>;
+  createUser: (userData: CreateUserType) => void;
   logOut: () => Promise<void>;
   logIn: (loginData: LoginType) => Promise<UserCredential>;
 };
@@ -39,9 +40,7 @@ const defaultUserContect: UserContextType = {
   user: null,
   isAuthLoading: true,
   setUser: () => {},
-  createUser: async (userData: CreateUserType) => {
-    return {} as UserCredential;
-  },
+  createUser: async (userData: CreateUserType) => {},
   logOut: async () => {},
   logIn: async (loginData: LoginType) => {
     return {} as UserCredential;
@@ -62,7 +61,12 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
 
   const createUser = async (userData: CreateUserType) => {
     const { email, password, displayName } = userData;
-    return createUserWithEmailAndPassword(auth, email, password);
+    const createUserResult = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    createUserToDb(createUserResult, displayName);
   };
 
   const logOut = async () => {
