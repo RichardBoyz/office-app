@@ -13,7 +13,6 @@ type UnfoldButtonType = {
 };
 const UnfoldButton = ({ isUnfoled, onClickSwitch }: UnfoldButtonType) => {
   const breakpoint = useBreakpoint();
-  console.log(breakpoint);
   return (
     <div
       onClick={onClickSwitch}
