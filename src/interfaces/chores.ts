@@ -9,5 +9,5 @@ export interface ChoresRoom {
   description: string;
   creator: string;
   members: string[];
-  createAt: Date;
+  createdAt: Date;
 }

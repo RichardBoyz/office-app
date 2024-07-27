@@ -13,7 +13,7 @@ export const createChoresRoom = async (name: string, description: string) => {
     description,
     members: [auth.currentUser!.uid],
     creator: auth.currentUser!.uid,
-    createAt: new Date(),
+    createdAt: new Date(),
   };
 
   return authProtect(async () => {

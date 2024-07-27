@@ -1,5 +1,5 @@
 import { ChoresRoom } from "@/interfaces/chores";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import React, {
   ReactNode,
   createContext,
@@ -40,7 +40,8 @@ const ChoresRoomProvider: React.FC<ChoresRoomProviderProps> = ({
       const queryRef = query(
         choresRoomsRef,
         where("name", ">=", keyword),
-        where("name", "<=", keyword + "\uf8ff")
+        where("name", "<=", keyword + "\uf8ff"),
+        orderBy("createdAt", "desc")
       );
       const querySnapshot = await getDocs(queryRef);
       const rooms: ChoresRoom[] = [];
