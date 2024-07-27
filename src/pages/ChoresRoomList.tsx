@@ -1,9 +1,10 @@
+import ChoresRoomCard from "@/components/chores/ChoresRoomCard";
+import { useChoresRoom } from "@/context/ChoresRoomContext";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import PageTransition from "../PageTransition";
 import UnfoldButton from "../components/UnfoldButton";
 import ChoresNavigator from "../components/chores/ChoresNavigator";
-import ChoresRoomCard from "../components/chores/ChoresRoomCard";
 import ChoresRoomListLayout from "../components/chores/ChoresRoomListLayout";
 
 const ChoresRoomList = () => {
@@ -36,6 +37,8 @@ const ChoresRoomList = () => {
     },
   };
 
+  const { choresRooms } = useChoresRoom();
+
   return (
     <PageTransition>
       <motion.div
@@ -46,7 +49,7 @@ const ChoresRoomList = () => {
         <motion.div
           variants={variants}
           animate={isCollapse ? "expanded" : "collapsed"}
-          className="flex rounded-md border border-slate-500 [--height-from:0px] [--height-to:200px] md:[--height-from:100%] md:[--height-to:100%] md:[--width-from:0px] md:[--width-to:500px]"
+          className="flex rounded-md border border-slate-500 [--height-from:0px] [--height-to:200px] md:[--height-from:100%] md:[--height-to:100%] md:[--width-from:0px] md:[--width-to:300px]"
         >
           <ChoresNavigator />
         </motion.div>
@@ -56,11 +59,13 @@ const ChoresRoomList = () => {
             onClickSwitch={handleClickCollapse}
           />
           <ChoresRoomListLayout>
-            <ChoresRoomCard />
-            <ChoresRoomCard />
-            <ChoresRoomCard />
-            <ChoresRoomCard />
-            <ChoresRoomCard />
+            {choresRooms.map((room) => (
+              <ChoresRoomCard
+                key={room.id}
+                name={room.name}
+                creator={room.creator}
+              />
+            ))}
           </ChoresRoomListLayout>
         </div>
       </motion.div>

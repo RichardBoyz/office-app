@@ -1,7 +1,9 @@
 import { AnimatePresence } from "framer-motion";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import ProtectRoute from "./components/ProtectRoute";
+import { Toaster } from "./components/ui/toaster";
 import { AuthContextProvider } from "./context/AuthContext";
+import { ChoresRoomProvider } from "./context/ChoresRoomContext";
 import Account from "./pages/Account";
 import ChoresRoomList from "./pages/ChoresRoomList";
 import Signin from "./pages/Signin";
@@ -29,11 +31,20 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route element={<ProtectRoute />}>
               <Route path="account" element={<Account />} />
-              <Route path="chores-room-list" element={<ChoresRoomList />} />
+              <Route
+                path="chores-room-list"
+                element={
+                  <ChoresRoomProvider>
+                    <ChoresRoomList />
+                  </ChoresRoomProvider>
+                }
+              />
             </Route>
           </Routes>
         </AnimatePresence>
       </AuthContextProvider>
+
+      <Toaster />
     </div>
   );
 }
