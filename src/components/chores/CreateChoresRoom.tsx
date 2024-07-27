@@ -34,7 +34,7 @@ const CreateChoresRoom = () => {
       console.log(error);
       toast({
         title: "建立失敗",
-        description: "Something want wrong",
+        description: "Something went wrong",
         duration: 1000,
       });
     }

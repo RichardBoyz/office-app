@@ -1,11 +1,20 @@
+import { useChoresRoom } from "@/context/ChoresRoomContext";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { useToast } from "../ui/use-toast";
 
 const ChoresRoomSearch = () => {
+  const { toast } = useToast();
+  const { getChoresRoomsList } = useChoresRoom();
   const [keyword, setKeyword] = useState<string>("");
-  const handleSearch = () => {
-    console.log(keyword);
+  const handleSearch = async () => {
+    if (!keyword.trim()) return;
+    try {
+      await getChoresRoomsList(keyword);
+    } catch (error) {
+      toast({ title: "Searching went wrong", duration: 1000 });
+    }
   };
   return (
     <div className="flex flex-col p-2">
