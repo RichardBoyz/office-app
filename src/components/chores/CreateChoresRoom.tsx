@@ -1,5 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CreateChoresInput } from "../../interfaces/chores";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 const CreateChoresRoom = () => {
   const {
     register,
@@ -11,10 +13,10 @@ const CreateChoresRoom = () => {
     console.log(data);
 
   return (
-    <div className="overflow-y-auto">
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="p-2 h-full">
+      <form onSubmit={handleSubmit(onSubmit)} className="h-full">
         <p className="text-sm">房間名稱</p>
-        <input
+        <Input
           className="mt-1"
           {...register("name", {
             required: "Please type something :)",
@@ -28,7 +30,7 @@ const CreateChoresRoom = () => {
         <p className="text-red-400">{errors.name?.message}</p>
 
         <p className="text-sm">描述</p>
-        <input
+        <Input
           className="mt-1"
           {...register("description", {
             required: false,
@@ -38,7 +40,7 @@ const CreateChoresRoom = () => {
             },
           })}
         />
-        <button className="mt-2">OK</button>
+        <Button className="mt-2">OK</Button>
       </form>
     </div>
   );
