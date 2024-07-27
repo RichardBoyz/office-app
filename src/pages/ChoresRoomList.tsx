@@ -49,7 +49,7 @@ const ChoresRoomList = () => {
         <motion.div
           variants={variants}
           animate={isCollapse ? "expanded" : "collapsed"}
-          className="flex rounded-md border border-slate-500 [--height-from:0px] [--height-to:200px] md:[--height-from:100%] md:[--height-to:100%] md:[--width-from:0px] md:[--width-to:300px]"
+          className="flex rounded-md border border-slate-500 [--height-from:0px] [--height-to:300px] md:[--height-from:100%] md:[--height-to:100%] md:[--width-from:0px] md:[--width-to:300px]"
         >
           <ChoresNavigator />
         </motion.div>

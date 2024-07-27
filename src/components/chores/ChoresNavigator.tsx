@@ -1,4 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import ChoresRoomSearch from "./ChoresRoomSearch";
 import CreateChoresRoom from "./CreateChoresRoom";
 
 const ChoresNavigator = () => {
@@ -10,7 +11,7 @@ const ChoresNavigator = () => {
           <TabsTrigger value="create">Create</TabsTrigger>
         </TabsList>
         <TabsContent className="flex-auto overflow-y-auto" value="search">
-          <div>Making some changes here.</div>
+          <ChoresRoomSearch />
         </TabsContent>
         <TabsContent className="flex-auto overflow-y-auto" value="create">
           <CreateChoresRoom />

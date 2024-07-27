@@ -60,6 +60,7 @@ const CreateChoresRoom = () => {
         <p className="text-sm pt-2">Description</p>
         <Input
           className="mt-1"
+          placeholder="description..."
           {...register("description", {
             required: false,
             maxLength: {
