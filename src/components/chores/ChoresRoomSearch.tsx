@@ -6,14 +6,18 @@ import { useToast } from "../ui/use-toast";
 
 const ChoresRoomSearch = () => {
   const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { getChoresRoomsList } = useChoresRoom();
   const [keyword, setKeyword] = useState<string>("");
   const handleSearch = async () => {
     if (!keyword.trim()) return;
+    setIsLoading(true);
     try {
       await getChoresRoomsList(keyword);
     } catch (error) {
       toast({ title: "Searching went wrong", duration: 1000 });
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -22,7 +26,7 @@ const ChoresRoomSearch = () => {
         placeholder="Search room..."
         onChange={(e) => setKeyword(e.target.value)}
       />
-      <Button className="mt-2" onClick={handleSearch}>
+      <Button disabled={isLoading} className="mt-2" onClick={handleSearch}>
         Search
       </Button>
     </div>
