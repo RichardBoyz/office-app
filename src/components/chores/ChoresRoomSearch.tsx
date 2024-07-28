@@ -10,7 +10,6 @@ const ChoresRoomSearch = () => {
   const { getChoresRoomsList } = useChoresRoom();
   const [keyword, setKeyword] = useState<string>("");
   const handleSearch = async () => {
-    if (!keyword.trim()) return;
     setIsLoading(true);
     try {
       await getChoresRoomsList(keyword);

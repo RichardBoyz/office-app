@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 export interface CreateChoresInput {
   name: string;
   description: string;
@@ -9,5 +11,11 @@ export interface ChoresRoom {
   description: string;
   creator: string;
   members: string[];
-  createdAt: Date;
+  createdAt: Date | Timestamp;
+}
+
+export interface ChoresTicket {
+  userId: string;
+  createdAt: Date | Timestamp;
+  isUsed: boolean;
 }

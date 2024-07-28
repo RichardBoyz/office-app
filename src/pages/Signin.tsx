@@ -1,3 +1,4 @@
+import { createNewTicketWhenSignin } from "@/apis/chores";
 import { FirebaseError } from "firebase/app";
 import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -48,6 +49,7 @@ const Signin = () => {
     if (!isValidInput) return;
     try {
       await logIn({ email, password });
+      createNewTicketWhenSignin();
       navigate("/account");
     } catch (error) {
       if (error instanceof FirebaseError) {

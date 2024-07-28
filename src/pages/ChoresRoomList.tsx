@@ -37,8 +37,7 @@ const ChoresRoomList = () => {
     },
   };
 
-  const { choresRooms } = useChoresRoom();
-
+  const { choresRooms, loading } = useChoresRoom();
   return (
     <PageTransition>
       <motion.div
@@ -49,16 +48,16 @@ const ChoresRoomList = () => {
         <motion.div
           variants={variants}
           animate={isCollapse ? "expanded" : "collapsed"}
-          className="flex rounded-md border border-slate-500 [--height-from:0px] [--height-to:300px] md:[--height-from:100%] md:[--height-to:100%] md:[--width-from:0px] md:[--width-to:300px]"
+          className="flex rounded-md border border-slate-500 [--height-from:0px] [--height-to:250px] md:[--height-from:100%] md:[--height-to:100%] md:[--width-from:0px] md:[--width-to:300px]"
         >
           <ChoresNavigator />
         </motion.div>
-        <div className="relative overflow-y-auto flex flex-auto rounded-md p-4 md:flex-row flex-col border border-slate-500">
+        <div className="relative overflow-y-auto flex flex-auto rounded-md p-4 md:flex-row flex-col border border-slate-500 min-h-full">
           <UnfoldButton
             isUnfoled={isCollapse}
             onClickSwitch={handleClickCollapse}
           />
-          <ChoresRoomListLayout>
+          <ChoresRoomListLayout isLoading={loading}>
             {choresRooms.map((room) => (
               <ChoresRoomCard
                 key={room.id}

@@ -1,5 +1,5 @@
 import { UserCredential } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 export const createUserToDb = async (
@@ -8,7 +8,7 @@ export const createUserToDb = async (
 ) => {
   const { user } = userCredential;
   const { email } = user;
-  await addDoc(collection(db, "users"), {
+  await setDoc(doc(db, "users", user.uid), {
     displayName,
     email,
   });
