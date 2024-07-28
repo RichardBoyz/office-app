@@ -12,6 +12,7 @@ export interface ChoresRoom {
   creator: string;
   members: string[];
   createdAt: Date | Timestamp;
+  isChoresChangeable: boolean;
 }
 
 export interface ChoresTicket {

@@ -8,7 +8,7 @@ import ChoresNavigator from "../components/chores/ChoresNavigator";
 import ChoresRoomListLayout from "../components/chores/ChoresRoomListLayout";
 
 const ChoresRoomList = () => {
-  const [isCollapse, setIsCollapse] = useState(false);
+  const [isCollapse, setIsCollapse] = useState(true);
   const handleClickCollapse = () => {
     setIsCollapse(!isCollapse);
   };
@@ -61,6 +61,7 @@ const ChoresRoomList = () => {
             {choresRooms.map((room) => (
               <ChoresRoomCard
                 key={room.id}
+                roomId={room.id!}
                 name={room.name}
                 creator={room.creator}
               />

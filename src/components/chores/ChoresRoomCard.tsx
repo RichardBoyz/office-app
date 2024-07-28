@@ -1,14 +1,21 @@
+import { useNavigate } from "react-router-dom";
+
 type ChoresRoomCardType = {
+  roomId: string;
   name: string;
-  creator: string;
+  creator?: string;
 };
 
-const ChoresRoomCard = ({
-  name = "123123131jasfiosdjfiosadjfiosfsjkjsafasdojf asiodfjaosi jfas fsjdkjsoi jfaoisj fiosaj ois",
-  creator,
-}: ChoresRoomCardType) => {
+const ChoresRoomCard = ({ roomId, name, creator }: ChoresRoomCardType) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/chores-room-list/${roomId}`);
+  };
   return (
-    <div className="hover:scale-105 transition-transform h-[400px] flex rounded-md shadow-md border border-slate-400 px-2 pt-6 pb-2 flex-col">
+    <div
+      onClick={handleClick}
+      className="hover:scale-105 transition-transform h-[400px] flex rounded-md shadow-md border border-slate-400 px-2 pt-6 pb-2 flex-col"
+    >
       <div className="flex gap-1">
         <span className="shrink-0">名稱：</span>
         <span className="line-clamp-1 text-lg font-bold">{name}</span>

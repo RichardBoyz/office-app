@@ -5,6 +5,7 @@ import { Toaster } from "./components/ui/toaster";
 import { AuthContextProvider } from "./context/AuthContext";
 import { ChoresRoomProvider } from "./context/ChoresRoomContext";
 import Account from "./pages/Account";
+import ChoresRoom from "./pages/ChoresRoom";
 import ChoresRoomList from "./pages/ChoresRoomList";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
@@ -39,6 +40,7 @@ function App() {
                   </ChoresRoomProvider>
                 }
               />
+              <Route path="chores-room-list/:roomId" element={<ChoresRoom />} />
             </Route>
           </Routes>
         </AnimatePresence>

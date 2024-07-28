@@ -24,6 +24,7 @@ export const createChoresRoom = async (name: string, description: string) => {
       members: [auth.currentUser!.uid],
       creator: auth.currentUser!.uid,
       createdAt: Timestamp.now(),
+      isChoresChangeable: false,
     };
     await addDoc(collection(db, FIRESTORE_COLLECTIONS.CHORES_ROOMS), data);
   });
