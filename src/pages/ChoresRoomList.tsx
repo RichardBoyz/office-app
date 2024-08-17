@@ -52,7 +52,7 @@ const ChoresRoomList = () => {
         >
           <ChoresNavigator />
         </motion.div>
-        <div className="relative overflow-y-auto flex flex-auto rounded-md p-4 md:flex-row flex-col border border-slate-500 min-h-full">
+        <div className="relative overflow-y-auto flex flex-auto rounded-md p-4 md:flex-row flex-col border border-slate-500">
           <UnfoldButton
             isUnfoled={isCollapse}
             onClickSwitch={handleClickCollapse}
